@@ -39,7 +39,6 @@ namespace SortingAlgorithms
                 ref int previousElement = ref array[j - 1];
                 ref int currentElement = ref array[j];
 
-                #
                 while (previousElement > currentElement)
                 {
                     SwapElements(ref currentElement, ref previousElement);
@@ -52,6 +51,32 @@ namespace SortingAlgorithms
 
                     previousElement = ref array[j - 1];
                     currentElement = ref array[j];
+                }
+            }
+        }
+
+        // https://www.youtube.com/watch?v=xli_FI7CuzA
+        public static void BubbleSort(int[] array)
+        {
+            for (int i = 1; i < array.Length; i++)
+            {
+                bool isChanged = false;
+
+                for (int j = 0; j < array.Length - 1; j++)
+                {
+                    ref int currentElement = ref array[j];
+                    ref int nextElement = ref array[j + 1];
+
+                    if (currentElement > nextElement)
+                    {
+                        SwapElements(ref currentElement, ref nextElement);
+                        isChanged = true;
+                    }
+                }
+
+                if (!isChanged)
+                {
+                    break;
                 }
             }
         }
