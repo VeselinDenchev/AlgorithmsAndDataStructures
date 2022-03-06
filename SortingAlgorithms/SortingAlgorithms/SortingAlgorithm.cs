@@ -81,6 +81,73 @@ namespace SortingAlgorithms
             }
         }
 
+        public static void ReverseBubbleSort(int[] array)
+        {
+            for (int i = array.Length - 2; i >= 0; i--)
+            {
+                bool isChanged = false;
+
+                for (int j = array.Length - 1; j >= 1; j--)
+                {
+                    ref int currentElement = ref array[j];
+                    ref int previousElement = ref array[j - 1];
+
+                    if (currentElement < previousElement)
+                    {
+                        SwapElements(ref currentElement, ref previousElement);
+                        isChanged = true;
+                    }
+                }
+
+                if (!isChanged)
+                {
+                    break;
+                }
+            }
+        }
+
+        public static void CocktailShakerSort(int[] array)
+        {
+            for (int i = 0; i < array.Length / 2; i++)
+            {
+                bool isChanged = false;
+
+                for (int j = 0; j < array.Length - 1; j++)
+                {
+                    ref int currentElement = ref array[j];
+                    ref int nextElement = ref array[j + 1];
+
+                    if (currentElement > nextElement)
+                    {
+                        SwapElements(ref currentElement, ref nextElement);
+                        isChanged = true;
+                    }
+                }
+
+                if (!isChanged)
+                {
+                    break;
+                }
+
+                for (int j = array.Length - 1; j >= 1; j--)
+                {
+                    ref int currentElement = ref array[j];
+                    ref int previousElement = ref array[j - 1];
+
+                    if (currentElement < previousElement)
+                    {
+                        SwapElements(ref currentElement, ref previousElement);
+                        isChanged = true;
+                    }
+                }
+
+                if (!isChanged)
+                {
+                    break;
+                }
+            }
+        }
+
         public static void PrintArray(int[] array)
         {
             StringBuilder stringBuilder = new StringBuilder();
