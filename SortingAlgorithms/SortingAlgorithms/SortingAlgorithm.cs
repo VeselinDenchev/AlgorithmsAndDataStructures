@@ -106,6 +106,7 @@ namespace SortingAlgorithms
             }
         }
 
+        // https://www.youtube.com/watch?v=njClLBoEbfI
         public static void CocktailShakerSort(int[] array)
         {
             for (int i = 0; i < array.Length / 2; i++)
@@ -148,6 +149,23 @@ namespace SortingAlgorithms
             }
         }
 
+        public static void QuickSort(int[] array, int leftIndex, int rightIndex)
+        {
+            if (leftIndex < rightIndex)
+            {
+                int pivot = Partition(array, leftIndex, rightIndex);
+
+                if (pivot > 1)
+                {
+                    QuickSort(array, leftIndex, pivot - 1);
+                }
+                if (pivot + 1 < rightIndex)
+                {
+                    QuickSort(array, pivot + 1, rightIndex);
+                }
+            }
+        }
+
         public static void PrintArray(int[] array)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -166,6 +184,39 @@ namespace SortingAlgorithms
             int tempValue = firstNumber;
             firstNumber = secondNumber;
             secondNumber = tempValue;
+        }
+
+        private static int Partition(int[] array, int leftIndex, int rightIndex)
+        {
+            int pivot = array[leftIndex];
+
+            while (true)
+            {
+
+                while (array[leftIndex] < pivot)
+                {
+                    leftIndex++;
+                }
+
+                while (array[rightIndex] > pivot)
+                {
+                    rightIndex--;
+                }
+
+                if (leftIndex < rightIndex)
+                {
+                    if (array[leftIndex] == array[rightIndex])
+                    {
+                        return rightIndex;
+                    }
+
+                    SwapElements(ref array[leftIndex], ref array[rightIndex]);
+                }
+                else
+                {
+                    return rightIndex;
+                }
+            }
         }
     }
 }
