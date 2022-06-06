@@ -2,6 +2,7 @@
 
 namespace SortingAlgorithms
 {
+    // https://github.com/ivandobrinovv/AlgorithmsAndDataStructures/blob/main/SortAlgorithmsExamples/Sort.Buisiness/Helpers/SortHelper.cs
     internal static class SortingAlgorithm
     {
         // https://www.youtube.com/watch?v=g-PGLbMth_g
@@ -149,6 +150,7 @@ namespace SortingAlgorithms
             }
         }
 
+        // https://www.youtube.com/watch?v=Hoixgm4-P4M
         public static void QuickSort(int[] array, int leftIndex, int rightIndex)
         {
             if (leftIndex < rightIndex)
@@ -163,6 +165,32 @@ namespace SortingAlgorithms
                 {
                     QuickSort(array, pivot + 1, rightIndex);
                 }
+            }
+        }
+
+        // https://www.youtube.com/watch?v=2DmK_H7IdTo
+        public static void HeapSort(int[] array)
+        {
+            // Call the Sift method for each parent element starting from the last one
+            // to form a pyramid
+            for (int i = array.Length / 2; i > 0; i--)
+            {
+                Heapify(array, i - 1, array.Length - 1);
+            }
+
+            // Create a sorted array from the pyramid by taking the biggest element from the
+            // non-sorted part (index 0 because it is a pyramid) and placing it at the end
+            // of the non sorted part. Then call the Sift method for the non-sorted part to
+            // set the biggest element at index 0 (create a pyramid) and repeat for the whole array.
+            int firstElementIndex = 0;
+            ref int firstElement = ref array[firstElementIndex];
+            for (int i = array.Length - 1; i > 0; i--)
+            {
+                ref int currentElement = ref array[i];
+                SwapElements(ref firstElement, ref currentElement);
+
+                int previousElementIndex = i - 1;
+                Heapify(array, firstElementIndex, previousElementIndex);
             }
         }
 
@@ -186,6 +214,7 @@ namespace SortingAlgorithms
             secondNumber = tempValue;
         }
 
+        // Quick sort
         private static int Partition(int[] array, int leftIndex, int rightIndex)
         {
             int pivot = array[leftIndex];
@@ -217,6 +246,43 @@ namespace SortingAlgorithms
                     return rightIndex;
                 }
             }
+        }
+
+        // Heap sort
+        private static void Heapify(int[] array, int startIndex, int endIndex)
+        {
+            int parentIndex = startIndex;
+            int childIndex = parentIndex * 2 + 1;
+            int itemValue = array[parentIndex];
+
+            while (childIndex <= endIndex)
+            {
+                // Take the index of the child with bigger value
+                if (childIndex < endIndex && array[childIndex] < array[childIndex + 1])
+                {
+                    childIndex++;
+                }
+
+                // Check if the value of the the start item is bigger than both children's
+                // values (if this is the correct place for it) and if it is break
+                if (itemValue >= array[childIndex])
+                {
+                    break;
+                }
+
+                // Set the value of the bigger child as parent value
+                array[parentIndex] = array[childIndex];
+
+                // Take the index of the bigger child as a parent index
+                parentIndex = childIndex;
+
+                // Take the index of the first child of the new parent index
+                childIndex *= 2;
+                childIndex++;
+            }
+
+            // Set the value of the start item on the correct place (as found from the logic above)
+            array[parentIndex] = itemValue;
         }
     }
 }
