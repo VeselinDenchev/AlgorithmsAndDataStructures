@@ -1,81 +1,75 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Graphs.Algorithms;
+using Graphs.Algorithms.KruskalAlgorithmHelpers;
 
-namespace Graphs
+// Is there a path in a graph BEGIN
+// Можете да промените матрицата на зависимостите, за да тествате с различни данни
+int[,] dependenciesMatrix = new int[,]
 {
-    // Задачата намира път между два зададени върха в граф
-    // Решението на задачата е работещо, но не е оптимално
-    class StartUp
-    {
-        // Можете да промените матрицата на зависимостите, за да тествате с различни данни
-        static readonly int[,] dependencies = new int[,]
-        {
-            { 0, 1, 0, 1, 0},
-            { 1, 0, 0, 1, 0},
-            { 0, 0, 0, 0, 1},
-            { 1, 1, 0, 0, 1},
-            { 0, 0, 1, 1, 0}
-        };
+    { 0, 4, 0, 0, 0, 0, 0, 8, 0 },
+    { 4, 0, 8, 0, 0, 0, 0, 11, 0 },
+    { 0, 8, 0, 7, 0, 4, 0, 0, 2 },
+    { 0, 0, 7, 0, 9, 14, 0, 0, 0 },
+    { 0, 0, 0, 9, 0, 10, 0, 0, 0 },
+    { 0, 0, 4, 0, 10, 0, 2, 0, 0 },
+    { 0, 0, 0, 14, 0, 2, 0, 1, 6 },
+    { 8, 11, 0, 0, 0, 0, 1, 0, 7 },
+    { 0, 0, 2, 0, 0, 0, 6, 7, 0 }
+};
 
-        static readonly int rowLength = dependencies.GetLength(0);
+Console.WriteLine("From where should the path start?");
+int from = int.Parse(Console.ReadLine());
 
-        static List<List<int>> paths = new List<List<int>>();
+Console.WriteLine("Where should the path end?");
+int to = int.Parse(Console.ReadLine());
 
-        static bool IsThereAPath(int from, int to, List<int> path)
-        {
-            if (dependencies[from, to] != 0)
-            {
-                path.Add(to);
-                Console.WriteLine(Environment.StackTrace);
-                Console.WriteLine();
-                return true;
-            }
+GraphPath graphPath = new GraphPath(dependenciesMatrix, from, to);
+Console.WriteLine(graphPath);
+// Is there a path in a graph END
+Console.WriteLine();
+Console.WriteLine("============================================================================================================");
+Console.WriteLine();
 
-            for (int i = 0; i < rowLength; i++)
-            {
-                if (dependencies[from, i] == 0 || from == i || path.Contains(i))
-                {
-                    continue;
-                }
+// Kruskal (Minimum spanning tree) algorithm BEGIN
+int verticesCount = 4;
+int edgesCount = 5;
+Graph graph = KruskalAlgorithm.CreateGraph(verticesCount, edgesCount);
 
-                path.Add(i);
-                if (IsThereAPath(i, to, path))
-                {
-                    return true;
-                }
-                else
-                {
-                    path.Remove(i);
-                }
-            }
+// Edge 0-1
+graph.edge[0].Source = 0;
+graph.edge[0].Destination = 1;
+graph.edge[0].Weight = 10;
 
-            return false;
-        }
+// Edge 0-2
+graph.edge[1].Source = 0;
+graph.edge[1].Destination = 2;
+graph.edge[1].Weight = 6;
 
-        static void Main(string[] args)
-        {
-            Console.WriteLine("From where should the path start?");
-            int from = int.Parse(Console.ReadLine());
-            Console.WriteLine("Where should the path end?");
-            int to = int.Parse(Console.ReadLine());
-            List<int> path = new List<int>();
-            path.Add(from);
+// Edge 0-3
+graph.edge[2].Source = 0;
+graph.edge[2].Destination = 3;
+graph.edge[2].Weight = 5;
 
-            if (IsThereAPath(from, to, path))
-            {
-                Console.WriteLine($"There is at least one path between {from} and {to}:");
-                foreach (int node in path)
-                {
-                    Console.WriteLine(node);
-                }
-            }
-            else
-            {
-                Console.WriteLine($"There is no path between {from} and {to}");
-            }
+// Edge 1-3
+graph.edge[3].Source = 1;
+graph.edge[3].Destination = 3;
+graph.edge[3].Weight = 15;
 
+// Edge 2-3
+graph.edge[4].Source = 2;
+graph.edge[4].Destination = 3;
+graph.edge[4].Weight = 4;
 
-            
-        }
-    }
-}
+KruskalAlgorithm.Kruskal(graph);
+// Kruskal (Minimum spanning tree) algorithm END
+
+Console.WriteLine();
+Console.WriteLine("============================================================================================================");
+Console.WriteLine();
+
+DijkstraAlgorithm.Dijkstra(dependenciesMatrix, 0);
+
+Console.WriteLine();
+Console.WriteLine("============================================================================================================");
+Console.WriteLine();
+
+PrimAlgorithm.Prim(dependenciesMatrix);
