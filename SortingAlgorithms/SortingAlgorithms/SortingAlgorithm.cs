@@ -151,19 +151,19 @@ namespace SortingAlgorithms
         }
 
         // https://www.youtube.com/watch?v=Hoixgm4-P4M
-        public static void QuickSort(int[] array, int leftIndex, int rightIndex)
+        public static void QuickSort(int[] array, int leftmostElementIndex, int rightmostElementIndex)
         {
-            if (leftIndex < rightIndex)
+            if (leftmostElementIndex < rightmostElementIndex)
             {
-                int pivot = Partition(array, leftIndex, rightIndex);
+                int pivot = Partition(array, leftmostElementIndex, rightmostElementIndex);
 
                 if (pivot > 1)
                 {
-                    QuickSort(array, leftIndex, pivot - 1);
+                    QuickSort(array, leftmostElementIndex, pivot - 1);
                 }
-                if (pivot + 1 < rightIndex)
+                if (pivot + 1 < rightmostElementIndex)
                 {
-                    QuickSort(array, pivot + 1, rightIndex);
+                    QuickSort(array, pivot + 1, rightmostElementIndex);
                 }
             }
         }
@@ -171,7 +171,7 @@ namespace SortingAlgorithms
         // https://www.youtube.com/watch?v=2DmK_H7IdTo
         public static void HeapSort(int[] array)
         {
-            // Call the Sift method for each parent element starting from the last one
+            // Call the Heapify method for each parent element starting from the last one
             // to form a pyramid
             for (int i = array.Length / 2; i > 0; i--)
             {
@@ -180,7 +180,7 @@ namespace SortingAlgorithms
 
             // Create a sorted array from the pyramid by taking the biggest element from the
             // non-sorted part (index 0 because it is a pyramid) and placing it at the end
-            // of the non sorted part. Then call the Sift method for the non-sorted part to
+            // of the non sorted part. Then call the Heapify method for the non-sorted part to
             // set the biggest element at index 0 (create a pyramid) and repeat for the whole array.
             int firstElementIndex = 0;
             ref int firstElement = ref array[firstElementIndex];
@@ -191,6 +191,18 @@ namespace SortingAlgorithms
 
                 int previousElementIndex = i - 1;
                 Heapify(array, firstElementIndex, previousElementIndex);
+            }
+        }
+
+        // https://www.youtube.com/watch?v=4VqmGXwpLqc
+        public static void MergeSort(int[] array, int leftmostElementIndex, int rightmostElementIndex)
+        {
+            if (leftmostElementIndex < rightmostElementIndex) // Check if there is anything to be sorted
+            {
+                int middleElementIndex = (leftmostElementIndex + rightmostElementIndex) / 2;
+                MergeSort(array, leftmostElementIndex, middleElementIndex);  // Sort the left subarray
+                MergeSort(array, middleElementIndex + 1, rightmostElementIndex); // Sort the right subarray
+                MergeSubarrays(array, leftmostElementIndex, middleElementIndex, rightmostElementIndex);    // Merge the two sorted subarrays
             }
         }
 
@@ -283,6 +295,61 @@ namespace SortingAlgorithms
 
             // Set the value of the start item on the correct place (as found from the logic above)
             array[parentIndex] = itemValue;
+        }
+
+        private static void MergeSubarrays(int[] array, int leftmostElementIndex, int middleElementIndex, 
+            int rightmostElementIndex)
+        {
+            rightmostElementIndex++;
+            middleElementIndex++;
+            int leftSubarrayRightmostElementIndex = middleElementIndex;
+            int rightSubarrayLeftmostElementIndex = middleElementIndex;
+            int leftSubarrayLeftmostElementIndex = leftmostElementIndex;
+
+            // The length of the array formed by merging the two subarrays
+            int arrayLength = rightmostElementIndex - leftmostElementIndex;
+            int[] tempArray = new int[arrayLength];
+            int i;
+
+            // Stop when all of the elements from one of the subarrays are used
+            for (i = 0; i < arrayLength && leftmostElementIndex != leftSubarrayRightmostElementIndex && 
+                rightSubarrayLeftmostElementIndex != rightmostElementIndex; i++)
+            {
+                if (array[leftmostElementIndex] < array[rightSubarrayLeftmostElementIndex])
+                {
+                    tempArray[i] = array[leftmostElementIndex++];
+                }
+                else
+                {
+                    tempArray[i] = array[rightSubarrayLeftmostElementIndex++];
+                }
+            }
+
+            // Set the elements left from the right subarray at the end of the
+            // tempArray if there are any
+            if (leftmostElementIndex == leftSubarrayRightmostElementIndex)
+            {
+                while (i < arrayLength)
+                {
+                    tempArray[i++] = array[rightSubarrayLeftmostElementIndex++];
+                }
+            }
+
+            // Set the elements left from the left subarray at the end of the
+            // helperArray if there are any
+            if (rightSubarrayLeftmostElementIndex == rightmostElementIndex)
+            {
+                while (i < arrayLength)
+                {
+                    tempArray[i++] = array[leftmostElementIndex++];
+                }
+            }
+
+            // Set the sorted subarray's values as values in the original array
+            for (i = 0; i < arrayLength; i++)
+            {
+                array[leftSubarrayLeftmostElementIndex++] = tempArray[i];
+            }
         }
     }
 }
