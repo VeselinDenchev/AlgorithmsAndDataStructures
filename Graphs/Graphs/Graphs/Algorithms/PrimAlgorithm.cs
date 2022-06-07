@@ -1,6 +1,7 @@
 ﻿namespace Graphs.Algorithms
 {
-    internal class PrimAlgorithm
+	// https://www.youtube.com/watch?v=cplfcGZmX7I
+	internal class PrimAlgorithm
     {
 		public static void Prim(int[,] dependenciesMatrix)
 		{

@@ -1,5 +1,6 @@
 ﻿namespace Graphs.Algorithms
 {
+    // https://www.youtube.com/watch?v=GazC3A4OQTE
     internal class DijkstraAlgorithm
     {
         public static void Dijkstra(int[,] dependenciesMatrix, int source)

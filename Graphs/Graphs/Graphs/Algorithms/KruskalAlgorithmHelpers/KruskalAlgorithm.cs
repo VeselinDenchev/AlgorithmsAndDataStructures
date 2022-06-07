@@ -1,5 +1,6 @@
 ﻿namespace Graphs.Algorithms.KruskalAlgorithmHelpers
 {
+    // https://www.youtube.com/watch?v=71UQH7Pr9kU
     internal static class KruskalAlgorithm
     {
         public static Graph CreateGraph(int verticesCount, int edgesCount)
@@ -10,6 +11,44 @@
             graph.edge = new Edge[graph.EdgesCount];
 
             return graph;
+        }
+
+        public static void Kruskal(Graph graph)
+        {
+            int verticesCount = graph.VerticesCount;
+            Edge[] result = new Edge[verticesCount];
+            int currentEdgeIndex = 0;
+            int resultEdgeIndex = 0;
+
+            // Sort edges by weight
+            Array.Sort(graph.edge, delegate (Edge firstEdge, Edge secondEdge)
+            {
+                return firstEdge.Weight.CompareTo(secondEdge.Weight);
+            });
+
+            Subset[] subsets = new Subset[verticesCount];
+
+            // Set every vertex's parent to be itself and its rank to 0
+            for (int vertexIndex = 0; vertexIndex < verticesCount; ++vertexIndex)
+            {
+                subsets[vertexIndex].Parent = vertexIndex;
+                subsets[vertexIndex].Rank = 0;
+            }
+
+            while (resultEdgeIndex < verticesCount - 1)
+            {
+                Edge nextEdge = graph.edge[currentEdgeIndex++];
+                int sourceIndex = FindVertexParent(subsets, nextEdge.Source);
+                int destinationIndex = FindVertexParent(subsets, nextEdge.Destination);
+
+                if (sourceIndex != destinationIndex)
+                {
+                    result[resultEdgeIndex++] = nextEdge;
+                    Union(subsets, sourceIndex, destinationIndex);
+                }
+            }
+
+            Print(result, resultEdgeIndex, subsets);
         }
 
         private static int FindVertexParent(Subset[] subsets, int vertexIndex)
@@ -70,44 +109,6 @@
                     }
                 }
             }
-        }
-
-        public static void Kruskal(Graph graph)
-        {
-            int verticesCount = graph.VerticesCount;
-            Edge[] result = new Edge[verticesCount];
-            int currentEdgeIndex = 0;
-            int resultEdgeIndex = 0;
-
-            // Sort edges by weight
-            Array.Sort(graph.edge, delegate (Edge firstEdge, Edge secondEdge)
-            {
-                return firstEdge.Weight.CompareTo(secondEdge.Weight);
-            });
-
-            Subset[] subsets = new Subset[verticesCount];
-
-            // Set every vertex's parent to be itself and its rank to 0
-            for (int vertexIndex = 0; vertexIndex < verticesCount; ++vertexIndex)
-            {
-                subsets[vertexIndex].Parent = vertexIndex;
-                subsets[vertexIndex].Rank = 0;
-            }
-
-            while (resultEdgeIndex < verticesCount - 1)
-            {
-                Edge nextEdge = graph.edge[currentEdgeIndex++];
-                int sourceIndex = FindVertexParent(subsets, nextEdge.Source);
-                int destinationIndex = FindVertexParent(subsets, nextEdge.Destination);
-
-                if (sourceIndex != destinationIndex)
-                {
-                    result[resultEdgeIndex++] = nextEdge;
-                    Union(subsets, sourceIndex, destinationIndex);
-                }
-            }
-
-            Print(result, resultEdgeIndex, subsets);
         }
     }
 }
