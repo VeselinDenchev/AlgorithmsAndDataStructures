@@ -7,7 +7,11 @@
 		/// <strong>Prim's algorithm</strong> is a greedy algorithm that finds a minimum spanning tree for a weighted undirected graph. 
 		/// This means it finds a subset of the edges that forms a tree that includes every vertex/node, where the total weight of all the 
 		/// edges in the tree is minimized. The algorithm operates by building this tree one vertex/node at a time, from an arbitrary 
-		/// starting vertex/node, at each step adding the cheapest possible connection from the tree to another vertex/node.
+		/// starting vertex/node, at each step adding the cheapest possible connection from the tree to another vertex/node.<br></br>
+		///	Time complexity: <strong>O(elogv)</strong>.
+		/// <br></br>
+		/// e = edges count<br></br>
+		/// v = e + 1 = vertex count
 		/// </summary>
 		/// <param name="dependencyMatrix">The dependency matrix of a graph.</param>
 		public static void Prim(int[,] dependencyMatrix)

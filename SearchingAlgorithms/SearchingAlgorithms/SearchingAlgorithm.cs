@@ -5,7 +5,14 @@
         /// <summary>
         /// <strong>Linear search</strong> is a sequential searching algorithm where we start from one end and check every element of the
         /// list until the desired element is found.<br></br>
-        /// Time complexity: <strong>O(n)</strong>
+        /// <strong>
+        /// Time complexity:<br></br>
+        ///     <list type="bullet">
+        ///         <item>Best: Ω(1);</item>
+        ///         <item>Average: θ(n);</item>
+        ///         <item>Worst: O(n).</item>
+        ///     </list>
+        /// </strong>
         /// </summary>
         /// <param name="array">An array of integers.</param>
         /// <param name="desiredElement">The element that is searched for.</param>
@@ -32,7 +39,14 @@
         /// <summary>
         /// <strong>Binary Search</strong> is a searching algorithm used in a sorted array by repeatedly dividing the search interval in 
         /// half. The idea of binary search is to use the information that the array is sorted and reduce the time complexity.<br></br>
-        /// Time complexity: <strong>O(logn)</strong>
+        /// <strong>
+        /// Time complexity:<br></br>
+        ///     <list type="bullet">
+        ///         <item>Best: Ω(1);</item>
+        ///         <item>Average: θ(logn);</item>
+        ///         <item>Worst: O(logn).</item>
+        ///     </list>
+        /// </strong>
         /// </summary>
         /// <param name="sortedArray">An ascending sorted array of integers.</param>
         /// <param name="desiredElement">The element that is searched for.</param>
@@ -70,7 +84,14 @@
         }
 
         /// <summary>
-        /// Recursive realization of the <strong><see cref="BinarySearch(int[], int)"/></strong>.
+        /// Recursive realization of the <strong><see cref="BinarySearch(int[], int)"/><br></br>.
+        /// Time complexity:<br></br>
+        ///     <list type="bullet">
+        ///         <item>Best: Ω(1);</item>
+        ///         <item>Average: θ(logn);</item>
+        ///         <item>Worst: O(logn).</item>
+        ///     </list>
+        /// </strong>
         /// </summary>
         /// <param name="sortedArray">An ascending sorted array of integers.</param>
         /// <param name="smallestIntegerIndex">The index of the smallest integer.</param>

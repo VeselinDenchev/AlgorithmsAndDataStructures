@@ -19,7 +19,16 @@
         /// connected, undirected graph is a spanning tree with a weight less than or equal to the weight of every other spanning tree. 
         /// The weight of a spanning tree is the sum of weights given to each edge of the spanning tree. For a disconnected graph, a minimum spanning 
         /// forest is composed of a minimum spanning tree for each connected component.) It is a greedy algorithm in graph theory as in 
-        /// each step it adds the next lowest-weight edge that will not form a cycle to the minimum spanning forest.
+        /// each step it adds the next lowest-weight edge that will not form a cycle to the minimum spanning forest.<br></br>
+        /// <strong>
+        /// Time complexity:<br></br>
+        ///     <list type="bullet">
+        ///         <item>Best: Ω(eloge);</item>
+        ///         <item>Average: θ(eloge);</item>
+        ///         <item>Worst: O(eloge).</item>
+        ///     </list>
+        /// </strong>
+        /// e = edges count
         /// </summary>
         public static void Kruskal(Graph graph)
         {

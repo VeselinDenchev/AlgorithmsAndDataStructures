@@ -10,12 +10,19 @@ namespace SortingAlgorithms
         /// The <strong>selection sort</strong> algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) 
         /// from unsorted part and putting it at the beginning. The algorithm maintains two subarrays in a given array:
         ///     <list type="bullet">
-        ///         <item><description>The subarray which is already sorted.</description></item>
-        ///         <item><description>Remaining subarray which is unsorted.</description></item>
+        ///         <item>The subarray which is already sorted.</item>
+        ///         <item>Remaining subarray which is unsorted.</item>
         ///     </list>
         /// In every iteration of selection sort, the minimum element (considering ascending order) from the unsorted subarray is 
         /// picked and moved to the sorted subarray.<br></br>
-        /// Time complexity: <strong>O(N^2)</strong>.
+        /// <strong>
+        /// Time complexity:<br></br>
+        ///     <list type="bullet">
+        ///         <item>Best: Ω(n^2);</item>
+        ///         <item>Average: θ(n^2);</item>
+        ///         <item>Worst: O(n^2).</item>
+        ///     </list>
+        /// </strong>
         /// </summary>
         /// <param name="array">An array of integers.</param>
         public static void SelectionSort(int[] array)
@@ -47,7 +54,14 @@ namespace SortingAlgorithms
         /// <strong>Insertion sort</strong> is a simple sorting algorithm that works similar to the way you sort playing cards in your hands. 
         /// The array is virtually split into a sorted and an unsorted part. Values from the unsorted part are picked and placed at 
         /// the correct position in the sorted part.<br></br>
-        /// Time complexity: <strong>O(N^2)</strong>.
+        /// <strong>
+        /// Time complexity:<br></br>
+        ///     <list type="bullet">
+        ///         <item>Best: Ω(n);</item>
+        ///         <item>Average: θ(n^2);</item>
+        ///         <item>Worst: O(n^2).</item>
+        ///     </list>
+        /// </strong>
         /// </summary>
         /// <param name="array">An array of integers.</param>
         public static void InsertionSort(int[] array)
@@ -80,7 +94,14 @@ namespace SortingAlgorithms
         /// <strong>Bubble Sort</strong> works by repeatedly swapping the neighbouring elements if they are in the wrong order.
         /// The highest number will "bubble" itself to the right with each itteration. A sorted partition will form at the end
         /// of the array.<br></br>
-        /// Time complexity: <strong>O(N^2)</strong>.
+        /// <strong>
+        /// Time complexity:<br></br>
+        ///     <list type="bullet">
+        ///         <item>Best: Ω(n);</item>
+        ///         <item>Average: θ(n^2);</item>
+        ///         <item>Worst: O(n^2).</item>
+        ///     </list>
+        /// </strong>
         /// </summary>
         /// <param name="array">An array of integers.</param>
         public static void BubbleSort(int[] array)
@@ -112,7 +133,14 @@ namespace SortingAlgorithms
         /// <strong>Reverse Bubble Sort</strong> works by repeatedly swapping the neighbouring elements if they are in the wrong 
         /// order. The lowest number will "sink" to the left with each itteration. A sorted partition will form at the begining
         /// of the array.<br></br>
-        /// Time complexity: <strong>O(N^2)</strong>.
+        /// <strong>
+        /// Time complexity:<br></br>
+        ///     <list type="bullet">
+        ///         <item>Best: Ω(n);</item>
+        ///         <item>Average: θ(n^2);</item>
+        ///         <item>Worst: O(n^2).</item>
+        ///     </list>
+        /// </strong>
         /// </summary>
         /// <param name="array">An array of integers.</param>
         public static void ReverseBubbleSort(int[] array)
@@ -144,7 +172,14 @@ namespace SortingAlgorithms
         /// <strong>Cocktail Shaker Sort</strong> is a variation of <see cref="BubbleSort"/>. Cocktail Shaker Sort traverses 
         /// through a given array in both directions alternatively. Basically it is combination of <see cref="BubbleSort(int[])"/> 
         /// and <see cref="ReverseBubbleSort(int[])"/>.<br></br>
-        /// Time complexity: <strong>O(N^2)</strong>.
+        /// <strong>
+        /// Time complexity:<br></br>
+        ///     <list type="bullet">
+        ///         <item>Best: Ω(n);</item>
+        ///         <item>Average: θ(n^2);</item>
+        ///         <item>Worst: O(n^2).</item>
+        ///     </list>
+        /// </strong>
         /// </summary>
         /// <param name="array">An array of integers.</param>
         // https://www.youtube.com/watch?v=njClLBoEbfI
@@ -194,7 +229,14 @@ namespace SortingAlgorithms
         /// <summary>
         /// <strong>Quick Sort</strong> is a Divide and Conquer algorithm. It picks an element as pivot and partitions the given 
         /// array around the picked pivot.<br></br>
-        /// Time complexity: <strong>O(N^2)</strong>.
+        /// <strong>
+        /// Time complexity:<br></br>
+        ///     <list type="bullet">
+        ///         <item>Best: Ω(nlogn);</item>
+        ///         <item>Average: θ(nlogn);</item>
+        ///         <item>Worst: O(n^2).</item>
+        ///     </list>
+        /// </strong>
         /// </summary>
         /// <param name="array">An array of integers.</param>
         /// <param name="leftmostElementIndex">The index of the leftmost element of the array to sort</param>
@@ -225,7 +267,14 @@ namespace SortingAlgorithms
         /// into the sorted region. Unlike Selection Sort, heapsort does not waste time with a linear-time scan of the unsorted 
         /// region; rather, Heap Sort maintains the unsorted region in a heap data structure to more quickly find the largest 
         /// element in each step.<br></br>
-        /// Time complexity: <strong>O(nlogn)</strong>
+        /// <strong>
+        /// Time complexity:<br></br>
+        ///     <list type="bullet">
+        ///         <item>Best: Ω(nlogn);</item>
+        ///         <item>Average: θ(nlogn);</item>
+        ///         <item>Worst: O(nlogn).</item>
+        ///     </list>
+        /// </strong>
         /// </summary>
         /// <param name="array">An array of integers</param>
         public static void HeapSort(int[] array)
@@ -258,7 +307,14 @@ namespace SortingAlgorithms
         /// Like <see cref="QuickSort(int[], int, int)"/>, <strong>Merge Sort</strong> is a Divide and Conquer algorithm. It 
         /// divides the input array into two halves, calls itself for the two halves, and then it merges the two sorted 
         /// halves.<br></br>
-        /// Time complexity: <strong>O(nlog n)</strong>
+        /// <strong>
+        /// Time complexity:<br></br>
+        ///     <list type="bullet">
+        ///         <item>Best: Ω(nlogn);</item>
+        ///         <item>Average: θ(nlogn);</item>
+        ///         <item>Worst: O(nlogn).</item>
+        ///     </list>
+        /// </strong>
         /// </summary>
         /// <param name="array">An array of integers.</param>
         /// <param name="leftmostElementIndex">The index of the leftmost element of the array to sort</param>

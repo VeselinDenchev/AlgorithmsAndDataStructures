@@ -5,6 +5,16 @@
     {
         /// <summary>
         /// <strong>Dijkstra's algorithm</strong> is an algorithm for finding the shortest paths between vertecies/nodes in a graph.
+        /// <strong>
+        /// Time complexity:<br></br>
+        ///     <list type="bullet">
+        ///         <item>Best: Ω(elogv);</item>
+        ///         <item>Average: θ(log(e/v));</item>
+        ///         <item>Worst: O(elogv).</item>
+        ///     </list>
+        /// </strong>
+        /// e = edges count<br></br>
+        /// v = e + 1 = vertex count
         /// </summary>
         /// <param name="dependencyMatrix">The dependency matrix of a graph.</param>
         /// <param name="sourceIndex">The index of the start vertex/node of the path.</param>
