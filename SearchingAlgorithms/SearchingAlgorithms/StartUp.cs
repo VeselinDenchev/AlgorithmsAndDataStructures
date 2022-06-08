@@ -1,7 +1,7 @@
 ﻿using SearchingAlgorithms;
 
 int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-int? desiredNumberIndex = SearchingAlgorithm.BinarySearch(array, 5);
+int? desiredNumberIndex = SearchingAlgorithm.BinarySearchRecursive(array, 0, array.Length - 1, 5);
 
 string output = null;
 

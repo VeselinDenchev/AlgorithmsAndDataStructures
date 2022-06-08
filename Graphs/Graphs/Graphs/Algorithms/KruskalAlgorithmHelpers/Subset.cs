@@ -1,4 +1,4 @@
-﻿namespace Graphs
+﻿namespace Graphs.Algorithms.KruskalAlgorithmHelpers
 {
 	public struct Subset
 	{

@@ -1,11 +1,16 @@
-﻿namespace Graphs.Algorithms
+﻿namespace Graphs.Algorithms.KruskalAlgorithmHelpers.Algorithms
 {
     // https://www.youtube.com/watch?v=GazC3A4OQTE
     internal class DijkstraAlgorithm
     {
-        public static void Dijkstra(int[,] dependenciesMatrix, int source)
+        /// <summary>
+        /// <strong>Dijkstra's algorithm</strong> is an algorithm for finding the shortest paths between vertecies/nodes in a graph.
+        /// </summary>
+        /// <param name="dependencyMatrix">The dependency matrix of a graph.</param>
+        /// <param name="sourceIndex">The index of the start vertex/node of the path.</param>
+        public static void Dijkstra(int[,] dependencyMatrix, int sourceIndex)
         {
-            int verticesCount = dependenciesMatrix.GetLength(0);
+            int verticesCount = dependencyMatrix.GetLength(0);
 
             int[] distances = new int[verticesCount];
             bool[] shortestPathTreeSet = new bool[verticesCount];
@@ -16,7 +21,7 @@
                 shortestPathTreeSet[vertexIndex] = false;
             }
 
-            distances[source] = 0;
+            distances[sourceIndex] = 0;
 
             for (int count = 0; count < verticesCount - 1; count++)
             {
@@ -27,15 +32,15 @@
                 {
                     bool isShortestPathToVertex = shortestPathTreeSet[vertexIndex];
                     bool thereIsDirectPathBetweenClosestNeighbouringVertexAndCurrentVertex = 
-                        Convert.ToBoolean(dependenciesMatrix[closestNeighbouringVertexIndex, vertexIndex]);
+                        Convert.ToBoolean(dependencyMatrix[closestNeighbouringVertexIndex, vertexIndex]);
                     bool distanceToClosestNeighbouringVertexHasBeenSet = distances[closestNeighbouringVertexIndex] != int.MaxValue;
                     bool isPathShorterThanDirectPath = distances[closestNeighbouringVertexIndex] 
-                        + dependenciesMatrix[closestNeighbouringVertexIndex, vertexIndex] < distances[vertexIndex];
+                        + dependencyMatrix[closestNeighbouringVertexIndex, vertexIndex] < distances[vertexIndex];
 
                     if (!isShortestPathToVertex && thereIsDirectPathBetweenClosestNeighbouringVertexAndCurrentVertex && 
                         distanceToClosestNeighbouringVertexHasBeenSet && isPathShorterThanDirectPath)
                     {
-                        distances[vertexIndex] = distances[closestNeighbouringVertexIndex] + dependenciesMatrix[closestNeighbouringVertexIndex, vertexIndex];
+                        distances[vertexIndex] = distances[closestNeighbouringVertexIndex] + dependencyMatrix[closestNeighbouringVertexIndex, vertexIndex];
                     }
                 }        
             }

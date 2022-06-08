@@ -13,6 +13,14 @@
             return graph;
         }
 
+        /// <summary>
+        /// <strong>Kruskal's algorithm</strong> finds a minimum spanning forest of an undirected edge-weighted graph. If the graph is 
+        /// connected, it finds a minimum spanning tree. (A minimum spanning tree (MST) or minimum weight spanning tree for a weighted, 
+        /// connected, undirected graph is a spanning tree with a weight less than or equal to the weight of every other spanning tree. 
+        /// The weight of a spanning tree is the sum of weights given to each edge of the spanning tree. For a disconnected graph, a minimum spanning 
+        /// forest is composed of a minimum spanning tree for each connected component.) It is a greedy algorithm in graph theory as in 
+        /// each step it adds the next lowest-weight edge that will not form a cycle to the minimum spanning forest.
+        /// </summary>
         public static void Kruskal(Graph graph)
         {
             int verticesCount = graph.VerticesCount;

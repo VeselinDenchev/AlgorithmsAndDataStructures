@@ -1,9 +1,9 @@
-﻿using Graphs.Algorithms;
-using Graphs.Algorithms.KruskalAlgorithmHelpers;
+﻿using Graphs.Algorithms.KruskalAlgorithmHelpers;
+using Graphs.Algorithms.KruskalAlgorithmHelpers.Algorithms;
 
 // Is there a path in a graph BEGIN
 // Можете да промените матрицата на зависимостите, за да тествате с различни данни
-int[,] dependenciesMatrix = new int[,]
+int[,] dependencyMatrix = new int[,]
 {
     { 0, 4, 0, 0, 0, 0, 0, 8, 0 },
     { 4, 0, 8, 0, 0, 0, 0, 11, 0 },
@@ -22,7 +22,7 @@ int from = int.Parse(Console.ReadLine());
 Console.WriteLine("Where should the path end?");
 int to = int.Parse(Console.ReadLine());
 
-GraphPath graphPath = new GraphPath(dependenciesMatrix, from, to);
+GraphPath graphPath = new GraphPath(dependencyMatrix, from, to);
 Console.WriteLine(graphPath);
 // Is there a path in a graph END
 Console.WriteLine();
@@ -66,10 +66,10 @@ Console.WriteLine();
 Console.WriteLine("============================================================================================================");
 Console.WriteLine();
 
-DijkstraAlgorithm.Dijkstra(dependenciesMatrix, 0);
+DijkstraAlgorithm.Dijkstra(dependencyMatrix, 0);
 
 Console.WriteLine();
 Console.WriteLine("============================================================================================================");
 Console.WriteLine();
 
-PrimAlgorithm.Prim(dependenciesMatrix);
+PrimAlgorithm.Prim(dependencyMatrix);

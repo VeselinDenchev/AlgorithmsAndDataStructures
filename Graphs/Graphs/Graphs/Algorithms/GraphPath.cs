@@ -1,23 +1,23 @@
 ﻿using System.Text;
 
-namespace Graphs.Algorithms
+namespace Graphs.Algorithms.KruskalAlgorithmHelpers.Algorithms
 {
     internal class GraphPath
     {
-        public GraphPath(int[,] dependenciesMatrix, int from, int to)
+        public GraphPath(int[,] dependenciesMatrix, int fromVertexIndex, int toVertexIndex)
         {
             DependenciesMatrix = dependenciesMatrix;
             RowLength = dependenciesMatrix.GetLength(0);
-            From = from;
-            To = to;
+            FromVertexIndex = fromVertexIndex;
+            ToVertexIndex = toVertexIndex;
             Path = new List<int>();
-            Path.Add(from);
+            Path.Add(fromVertexIndex);
         }
         private int RowLength { get; }
 
-        private int From { get; }
+        private int FromVertexIndex { get; }
 
-        private int To { get; }
+        private int ToVertexIndex { get; }
 
         private List<int> Path { get; }
 
@@ -58,9 +58,9 @@ namespace Graphs.Algorithms
         {
             StringBuilder outputStringBuilder = new StringBuilder();
 
-            if (IsThereAPath(From, To))
+            if (IsThereAPath(FromVertexIndex, ToVertexIndex))
             {
-                outputStringBuilder.AppendLine($"There is at least one path between {From} and {To}:");
+                outputStringBuilder.AppendLine($"There is at least one path between {FromVertexIndex} and {ToVertexIndex}:");
                 foreach (int node in Path)
                 {
                     outputStringBuilder.AppendLine(node.ToString());
@@ -68,7 +68,7 @@ namespace Graphs.Algorithms
             }
             else
             {
-                outputStringBuilder.Append($"There is no path between {From} and {To}");
+                outputStringBuilder.Append($"There is no path between {FromVertexIndex} and {ToVertexIndex}");
             }
 
             string output = outputStringBuilder.ToString();

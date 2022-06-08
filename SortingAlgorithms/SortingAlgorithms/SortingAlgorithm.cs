@@ -6,31 +6,50 @@ namespace SortingAlgorithms
     internal static class SortingAlgorithm
     {
         // https://www.youtube.com/watch?v=g-PGLbMth_g
+        /// <summary>
+        /// The <strong>selection sort</strong> algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) 
+        /// from unsorted part and putting it at the beginning. The algorithm maintains two subarrays in a given array:
+        ///     <list type="bullet">
+        ///         <item><description>The subarray which is already sorted.</description></item>
+        ///         <item><description>Remaining subarray which is unsorted.</description></item>
+        ///     </list>
+        /// In every iteration of selection sort, the minimum element (considering ascending order) from the unsorted subarray is 
+        /// picked and moved to the sorted subarray.<br></br>
+        /// Time complexity: <strong>O(N^2)</strong>.
+        /// </summary>
+        /// <param name="array">An array of integers.</param>
         public static void SelectionSort(int[] array)
         {
             for (int i = 0; i < array.Length - 1; i++)
             {
                 ref int initialElement = ref array[i];
                 int currentElement = initialElement;
-                int currentMin = currentElement;
-                int currentMinIndex = i;
+                int currentMinElement = currentElement;
+                int currentMinElementIndex = i;
 
                 for (int j = i + 1; j < array.Length; j++)
                 {
                     currentElement = array[j];
 
-                    if (currentMin > currentElement)
+                    if (currentMinElement > currentElement)
                     {
-                        currentMin = currentElement;
-                        currentMinIndex = j;
+                        currentMinElement = currentElement;
+                        currentMinElementIndex = j;
                     }
                 }
 
-                SwapElements(ref initialElement, ref array[currentMinIndex]);
+                SwapElements(ref initialElement, ref array[currentMinElementIndex]);
             }
         }
 
         // https://www.youtube.com/watch?v=JU767SDMDvA
+        /// <summary>
+        /// <strong>Insertion sort</strong> is a simple sorting algorithm that works similar to the way you sort playing cards in your hands. 
+        /// The array is virtually split into a sorted and an unsorted part. Values from the unsorted part are picked and placed at 
+        /// the correct position in the sorted part.<br></br>
+        /// Time complexity: <strong>O(N^2)</strong>.
+        /// </summary>
+        /// <param name="array">An array of integers.</param>
         public static void InsertionSort(int[] array)
         {
             for (int i = 1; i < array.Length; i++)
@@ -57,6 +76,13 @@ namespace SortingAlgorithms
         }
 
         // https://www.youtube.com/watch?v=xli_FI7CuzA
+        /// <summary>
+        /// <strong>Bubble Sort</strong> works by repeatedly swapping the neighbouring elements if they are in the wrong order.
+        /// The highest number will "bubble" itself to the right with each itteration. A sorted partition will form at the end
+        /// of the array.<br></br>
+        /// Time complexity: <strong>O(N^2)</strong>.
+        /// </summary>
+        /// <param name="array">An array of integers.</param>
         public static void BubbleSort(int[] array)
         {
             for (int i = 1; i < array.Length; i++)
@@ -82,6 +108,13 @@ namespace SortingAlgorithms
             }
         }
 
+        /// <summary>
+        /// <strong>Reverse Bubble Sort</strong> works by repeatedly swapping the neighbouring elements if they are in the wrong 
+        /// order. The lowest number will "sink" to the left with each itteration. A sorted partition will form at the begining
+        /// of the array.<br></br>
+        /// Time complexity: <strong>O(N^2)</strong>.
+        /// </summary>
+        /// <param name="array">An array of integers.</param>
         public static void ReverseBubbleSort(int[] array)
         {
             for (int i = array.Length - 2; i >= 0; i--)
@@ -107,6 +140,13 @@ namespace SortingAlgorithms
             }
         }
 
+        /// <summary>
+        /// <strong>Cocktail Shaker Sort</strong> is a variation of <see cref="BubbleSort"/>. Cocktail Shaker Sort traverses 
+        /// through a given array in both directions alternatively. Basically it is combination of <see cref="BubbleSort(int[])"/> 
+        /// and <see cref="ReverseBubbleSort(int[])"/>.<br></br>
+        /// Time complexity: <strong>O(N^2)</strong>.
+        /// </summary>
+        /// <param name="array">An array of integers.</param>
         // https://www.youtube.com/watch?v=njClLBoEbfI
         public static void CocktailShakerSort(int[] array)
         {
@@ -151,24 +191,43 @@ namespace SortingAlgorithms
         }
 
         // https://www.youtube.com/watch?v=Hoixgm4-P4M
+        /// <summary>
+        /// <strong>Quick Sort</strong> is a Divide and Conquer algorithm. It picks an element as pivot and partitions the given 
+        /// array around the picked pivot.<br></br>
+        /// Time complexity: <strong>O(N^2)</strong>.
+        /// </summary>
+        /// <param name="array">An array of integers.</param>
+        /// <param name="leftmostElementIndex">The index of the leftmost element of the array to sort</param>
+        /// <param name="rightmostElementIndex">The index of the rightmost element of the array to sort</param>
         public static void QuickSort(int[] array, int leftmostElementIndex, int rightmostElementIndex)
         {
             if (leftmostElementIndex < rightmostElementIndex)
             {
-                int pivot = Partition(array, leftmostElementIndex, rightmostElementIndex);
+                int pivotIndex = Partition(array, leftmostElementIndex, rightmostElementIndex);
 
-                if (pivot > 1)
+                if (pivotIndex > 1)
                 {
-                    QuickSort(array, leftmostElementIndex, pivot - 1);
+                    QuickSort(array, leftmostElementIndex, pivotIndex - 1);
                 }
-                if (pivot + 1 < rightmostElementIndex)
+
+                if (pivotIndex + 1 < rightmostElementIndex)
                 {
-                    QuickSort(array, pivot + 1, rightmostElementIndex);
+                    QuickSort(array, pivotIndex + 1, rightmostElementIndex);
                 }
             }
         }
 
         // https://www.youtube.com/watch?v=2DmK_H7IdTo
+        /// <summary>
+        /// <strong>Heap Sort</strong> is a comparison-based sorting algorithm. Heap Sort can be thought of as an improved 
+        /// <see cref="SelectionSort(int[])"/>: like Selection Sort, Heap Sort divides its input into a sorted and an unsorted 
+        /// region, and it iteratively shrinks the unsorted region by extracting the largest element from it and inserting it 
+        /// into the sorted region. Unlike Selection Sort, heapsort does not waste time with a linear-time scan of the unsorted 
+        /// region; rather, Heap Sort maintains the unsorted region in a heap data structure to more quickly find the largest 
+        /// element in each step.<br></br>
+        /// Time complexity: <strong>O(nlogn)</strong>
+        /// </summary>
+        /// <param name="array">An array of integers</param>
         public static void HeapSort(int[] array)
         {
             // Call the Heapify method for each parent element starting from the last one
@@ -195,6 +254,15 @@ namespace SortingAlgorithms
         }
 
         // https://www.youtube.com/watch?v=4VqmGXwpLqc
+        /// <summary>
+        /// Like <see cref="QuickSort(int[], int, int)"/>, <strong>Merge Sort</strong> is a Divide and Conquer algorithm. It 
+        /// divides the input array into two halves, calls itself for the two halves, and then it merges the two sorted 
+        /// halves.<br></br>
+        /// Time complexity: <strong>O(nlog n)</strong>
+        /// </summary>
+        /// <param name="array">An array of integers.</param>
+        /// <param name="leftmostElementIndex">The index of the leftmost element of the array to sort</param>
+        /// <param name="rightmostElementIndex">The index of the rightmost element of the array to sort</param>
         public static void MergeSort(int[] array, int leftmostElementIndex, int rightmostElementIndex)
         {
             if (leftmostElementIndex < rightmostElementIndex) // Check if there is anything to be sorted
@@ -206,7 +274,35 @@ namespace SortingAlgorithms
             }
         }
 
-        public static void PrintArray(int[] array)
+        public static int[] GenerateArrayWithRandomIntegers(int lowerBound, int upperBound, int integersCount)
+        {
+            try
+            {
+                if (lowerBound >= upperBound)
+                {
+                    throw new ArgumentException("Upper bound must be greater than lower bound!");
+                }
+
+                int[] array = new int[integersCount];
+
+                Random random = new Random();
+
+                for (int i = 0; i < array.Length; i++)
+                {
+                    array[i] = random.Next(lowerBound, upperBound);
+                }
+
+                return array;
+            }
+            catch (ArgumentException ae)
+            {
+                Console.WriteLine(ae.Message);
+            }
+
+            return null;
+        }
+
+        public static string ArrayToString(int[] array)
         {
             StringBuilder stringBuilder = new StringBuilder();
 
@@ -216,51 +312,65 @@ namespace SortingAlgorithms
             }
 
             string arrayString = stringBuilder.ToString();
-            Console.WriteLine(arrayString);
-        }
 
-        private static void SwapElements(ref int firstNumber, ref int secondNumber)
-        {
-            int tempValue = firstNumber;
-            firstNumber = secondNumber;
-            secondNumber = tempValue;
+            return arrayString;
         }
 
         // Quick sort
-        private static int Partition(int[] array, int leftIndex, int rightIndex)
+        /// <summary>
+        /// Given an array and an element of array as pivot, put the element at its correct position in sorted array and put all 
+        /// smaller elements than it before it, and put all greater than it elements after it.
+        /// </summary>
+        /// <param name="array">An array of integers.</param>
+        /// <param name="leftmostIndex">The leftmost index of the subarray to get pivot from.</param>
+        /// <param name="rightmostIndex">The rightmost index of the subarray to get pivot from.</param>
+        /// <returns>New pivot index.</returns>
+        private static int Partition(int[] array, int leftmostIndex, int rightmostIndex)
         {
-            int pivot = array[leftIndex];
+            int pivot = array[leftmostIndex];
+            int pivotIndex;
 
             while (true)
             {
-
-                while (array[leftIndex] < pivot)
+                while (array[leftmostIndex] < pivot)
                 {
-                    leftIndex++;
+                    leftmostIndex++;
                 }
 
-                while (array[rightIndex] > pivot)
+                while (array[rightmostIndex] > pivot)
                 {
-                    rightIndex--;
+                    rightmostIndex--;
                 }
 
-                if (leftIndex < rightIndex)
+                if (leftmostIndex < rightmostIndex)
                 {
-                    if (array[leftIndex] == array[rightIndex])
+                    if (array[leftmostIndex] == array[rightmostIndex])
                     {
-                        return rightIndex;
+                        pivotIndex = rightmostIndex;
+                        break;
                     }
 
-                    SwapElements(ref array[leftIndex], ref array[rightIndex]);
+                    SwapElements(ref array[leftmostIndex], ref array[rightmostIndex]);
                 }
                 else
                 {
-                    return rightIndex;
+                    pivotIndex = rightmostIndex;
+                    break;
                 }
             }
+
+            return pivotIndex;
         }
 
         // Heap sort
+        /// <summary>
+        /// Reshaping a binary tree into a Heap data structure is known as <strong>‘heapify’</strong>. A binary tree is a tree 
+        /// data structure that has two child nodes at max. If a node’s children nodes are ‘heapified’, then only ‘heapify’ 
+        /// process can be applied over that node. A heap should always be a complete binary tree. 
+        /// </summary>
+        /// <param name="array">An array of integers.</param>
+        /// <param name="startIndex">The start index of the subarray to get 'heapified'.</param>
+        /// <param name="endIndex">The end index of the subarray to get 'heapified'.</param>
         private static void Heapify(int[] array, int startIndex, int endIndex)
         {
             int parentIndex = startIndex;
@@ -297,6 +407,16 @@ namespace SortingAlgorithms
             array[parentIndex] = itemValue;
         }
 
+        // Merge sort
+        /// <summary>
+        /// It is used for merging two half-arrays. The merge is a key process that assumes that both subarrays are sorted and merges 
+        /// them into one.
+        /// </summary>
+        /// <param name="array">The array of integers to get its both halves sorted (therefore the whole array) and merged</param>
+        /// <param name="leftmostElementIndex">The index of the leftmost element of the array to get sorted.</param>
+        /// <param name="middleElementIndex">The index of the middle element of the array (seperating the both half-arrays)
+        /// to get sorted.</param>
+        /// <param name="rightmostElementIndex">The index of the rightmost element of the left array to get sorted.</param>
         private static void MergeSubarrays(int[] array, int leftmostElementIndex, int middleElementIndex, 
             int rightmostElementIndex)
         {
@@ -350,6 +470,16 @@ namespace SortingAlgorithms
             {
                 array[leftSubarrayLeftmostElementIndex++] = tempArray[i];
             }
+        }
+
+        /// <summary>
+        /// Method for swapping two integers in an array.
+        /// </summary>
+        private static void SwapElements(ref int firstInteger, ref int secondInteger)
+        {
+            int tempValue = firstInteger;
+            firstInteger = secondInteger;
+            secondInteger = tempValue;
         }
     }
 }
