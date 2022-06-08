@@ -1,5 +1,6 @@
-﻿using Graphs.Algorithms.KruskalAlgorithmHelpers;
-using Graphs.Algorithms.KruskalAlgorithmHelpers.Algorithms;
+﻿using Graphs.Algorithms;
+using Graphs.Algorithms.KruskalAlgorithmHelpers;
+
 
 // Is there a path in a graph BEGIN
 // Можете да промените матрицата на зависимостите, за да тествате с различни данни

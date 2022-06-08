@@ -1,4 +1,4 @@
-﻿namespace Graphs.Algorithms.KruskalAlgorithmHelpers.Algorithms
+﻿namespace Graphs.Algorithms
 {
 	// https://www.youtube.com/watch?v=cplfcGZmX7I
 	internal class PrimAlgorithm

@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Graphs.Algorithms.KruskalAlgorithmHelpers.Algorithms
+namespace Graphs.Algorithms
 {
     internal class GraphPath
     {
