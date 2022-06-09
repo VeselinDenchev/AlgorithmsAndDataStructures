@@ -8,7 +8,7 @@
 		/// This means it finds a subset of the edges that forms a tree that includes every vertex/node, where the total weight of all the 
 		/// edges in the tree is minimized. The algorithm operates by building this tree one vertex/node at a time, from an arbitrary 
 		/// starting vertex/node, at each step adding the cheapest possible connection from the tree to another vertex/node.<br></br>
-		///	Time complexity: <strong>O(elogv)</strong>.
+		///	<strong>Time complexity: O(elogv)</strong>.
 		/// <br></br>
 		/// e = edges count<br></br>
 		/// v = e + 1 = vertex count

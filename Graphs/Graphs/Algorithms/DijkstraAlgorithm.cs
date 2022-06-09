@@ -4,7 +4,7 @@
     internal class DijkstraAlgorithm
     {
         /// <summary>
-        /// <strong>Dijkstra's algorithm</strong> is an algorithm for finding the shortest paths between vertecies/nodes in a graph.
+        /// <strong>Dijkstra's algorithm</strong> is an algorithm for finding the shortest paths between vertecies/nodes in a graph.<br></br>
         /// <strong>
         /// Time complexity:<br></br>
         ///     <list type="bullet">

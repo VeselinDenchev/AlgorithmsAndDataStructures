@@ -18,5 +18,6 @@ while (array is null)
 }
 
 Console.WriteLine("Unsorted array: " + SortingAlgorithm.ArrayToString(array));
+
 SortingAlgorithm.MergeSort(array, 0, array.Length - 1);
-Console.WriteLine("Sorted array: " + SortingAlgorithm.ArrayToString(array));
+Console.WriteLine($"Sorted array using {nameof(SortingAlgorithm.MergeSort)}: {SortingAlgorithm.ArrayToString(array)}");

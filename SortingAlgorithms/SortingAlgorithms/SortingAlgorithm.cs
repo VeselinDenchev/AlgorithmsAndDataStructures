@@ -38,7 +38,7 @@ namespace SortingAlgorithms
                 {
                     currentElement = array[j];
 
-                    if (currentMinElement > currentElement)
+                    if (currentElement < currentMinElement)
                     {
                         currentMinElement = currentElement;
                         currentMinElementIndex = j;
@@ -46,46 +46,6 @@ namespace SortingAlgorithms
                 }
 
                 SwapElements(ref initialElement, ref array[currentMinElementIndex]);
-            }
-        }
-
-        // https://www.youtube.com/watch?v=JU767SDMDvA
-        /// <summary>
-        /// <strong>Insertion sort</strong> is a simple sorting algorithm that works similar to the way you sort playing cards in your hands. 
-        /// The array is virtually split into a sorted and an unsorted part. Values from the unsorted part are picked and placed at 
-        /// the correct position in the sorted part.<br></br>
-        /// <strong>
-        /// Time complexity:<br></br>
-        ///     <list type="bullet">
-        ///         <item>Best: Ω(n);</item>
-        ///         <item>Average: θ(n^2);</item>
-        ///         <item>Worst: O(n^2).</item>
-        ///     </list>
-        /// </strong>
-        /// </summary>
-        /// <param name="array">An array of integers.</param>
-        public static void InsertionSort(int[] array)
-        {
-            for (int i = 1; i < array.Length; i++)
-            {
-                int j = i;
-
-                ref int previousElement = ref array[j - 1];
-                ref int currentElement = ref array[j];
-
-                while (previousElement > currentElement)
-                {
-                    SwapElements(ref currentElement, ref previousElement);
-                    j--;
-
-                    if (j <= 0)
-                    {
-                        break;
-                    }
-
-                    previousElement = ref array[j - 1];
-                    currentElement = ref array[j];
-                }
             }
         }
 
@@ -122,10 +82,7 @@ namespace SortingAlgorithms
                     }
                 }
 
-                if (!isChanged)
-                {
-                    break;
-                }
+                if (!isChanged) break;
             }
         }
 
@@ -225,6 +182,46 @@ namespace SortingAlgorithms
             }
         }
 
+        // https://www.youtube.com/watch?v=JU767SDMDvA
+        /// <summary>
+        /// <strong>Insertion sort</strong> is a simple sorting algorithm that works similar to the way you sort playing cards in your hands. 
+        /// The array is virtually split into a sorted and an unsorted part. Values from the unsorted part are picked and placed at 
+        /// the correct position in the sorted part.<br></br>
+        /// <strong>
+        /// Time complexity:<br></br>
+        ///     <list type="bullet">
+        ///         <item>Best: Ω(n);</item>
+        ///         <item>Average: θ(n^2);</item>
+        ///         <item>Worst: O(n^2).</item>
+        ///     </list>
+        /// </strong>
+        /// </summary>
+        /// <param name="array">An array of integers.</param>
+        public static void InsertionSort(int[] array)
+        {
+            for (int i = 1; i < array.Length; i++)
+            {
+                int j = i;
+
+                ref int previousElement = ref array[j - 1];
+                ref int currentElement = ref array[j];
+
+                while (previousElement > currentElement)
+                {
+                    SwapElements(ref currentElement, ref previousElement);
+                    j--;
+
+                    if (j <= 0)
+                    {
+                        break;
+                    }
+
+                    previousElement = ref array[j - 1];
+                    currentElement = ref array[j];
+                }
+            }
+        }
+
         // https://www.youtube.com/watch?v=Hoixgm4-P4M
         /// <summary>
         /// <strong>Quick Sort</strong> is a Divide and Conquer algorithm. It picks an element as pivot and partitions the given 
@@ -279,17 +276,12 @@ namespace SortingAlgorithms
         /// <param name="array">An array of integers</param>
         public static void HeapSort(int[] array)
         {
-            // Call the Heapify method for each parent element starting from the last one
-            // to form a pyramid
+            // Call the Heapify method for each parent element starting from the last one to form a pyramid
             for (int i = array.Length / 2; i > 0; i--)
             {
                 Heapify(array, i - 1, array.Length - 1);
             }
 
-            // Create a sorted array from the pyramid by taking the biggest element from the
-            // non-sorted part (index 0 because it is a pyramid) and placing it at the end
-            // of the non sorted part. Then call the Heapify method for the non-sorted part to
-            // set the biggest element at index 0 (create a pyramid) and repeat for the whole array.
             int firstElementIndex = 0;
             ref int firstElement = ref array[firstElementIndex];
             for (int i = array.Length - 1; i > 0; i--)
@@ -321,12 +313,12 @@ namespace SortingAlgorithms
         /// <param name="rightmostElementIndex">The index of the rightmost element of the array to sort</param>
         public static void MergeSort(int[] array, int leftmostElementIndex, int rightmostElementIndex)
         {
-            if (leftmostElementIndex < rightmostElementIndex) // Check if there is anything to be sorted
+            if (leftmostElementIndex < rightmostElementIndex)
             {
                 int middleElementIndex = (leftmostElementIndex + rightmostElementIndex) / 2;
-                MergeSort(array, leftmostElementIndex, middleElementIndex);  // Sort the left subarray
-                MergeSort(array, middleElementIndex + 1, rightmostElementIndex); // Sort the right subarray
-                MergeSubarrays(array, leftmostElementIndex, middleElementIndex, rightmostElementIndex);    // Merge the two sorted subarrays
+                MergeSort(array, leftmostElementIndex, middleElementIndex);
+                MergeSort(array, middleElementIndex + 1, rightmostElementIndex);
+                MergeSubarrays(array, leftmostElementIndex, middleElementIndex, rightmostElementIndex);
             }
         }
 
@@ -367,7 +359,7 @@ namespace SortingAlgorithms
                 stringBuilder.Append(element.ToString() + ' ');
             }
 
-            string arrayString = stringBuilder.ToString();
+            string arrayString = stringBuilder.ToString().TrimEnd();
 
             return arrayString;
         }
@@ -441,12 +433,9 @@ namespace SortingAlgorithms
                     childIndex++;
                 }
 
-                // Check if the value of the the start item is bigger than both children's
-                // values (if this is the correct place for it) and if it is break
-                if (itemValue >= array[childIndex])
-                {
-                    break;
-                }
+                /* Check if the value of the the start item is bigger than both children's values (if this is the correct place for
+                 * it) and if it is break */
+                if (itemValue >= array[childIndex]) break;
 
                 // Set the value of the bigger child as parent value
                 array[parentIndex] = array[childIndex];
@@ -482,7 +471,6 @@ namespace SortingAlgorithms
             int rightSubarrayLeftmostElementIndex = middleElementIndex;
             int leftSubarrayLeftmostElementIndex = leftmostElementIndex;
 
-            // The length of the array formed by merging the two subarrays
             int arrayLength = rightmostElementIndex - leftmostElementIndex;
             int[] tempArray = new int[arrayLength];
             int i;
@@ -501,8 +489,7 @@ namespace SortingAlgorithms
                 }
             }
 
-            // Set the elements left from the right subarray at the end of the
-            // tempArray if there are any
+            // Set the elements left from the right subarray at the end of the tempArray if there are any
             if (leftmostElementIndex == leftSubarrayRightmostElementIndex)
             {
                 while (i < arrayLength)
@@ -511,8 +498,7 @@ namespace SortingAlgorithms
                 }
             }
 
-            // Set the elements left from the left subarray at the end of the
-            // helperArray if there are any
+            // Set the elements left from the left subarray at the end of the tempArray if there are any
             if (rightSubarrayLeftmostElementIndex == rightmostElementIndex)
             {
                 while (i < arrayLength)
