@@ -1,4 +1,4 @@
-﻿namespace BinarySearchTreeHelpers
+﻿namespace ExamTask
 {
     public class BinarySearchTree
     {
@@ -24,7 +24,7 @@
                 else return false;
             }
         }
-        
+
         public bool HasRightSubtree
         {
             get
@@ -208,14 +208,14 @@
                 if (parentHasLessThanTwoChilds)
                 {
                     return parent.rightChild;
-                }   
+                }
                 else if (parent.rightChild == null)
                 {
                     return parent.leftChild;
                 }
 
                 // node with two children: Get the inorder successor (smallest in the right subtree)  
-                parent.Value = MinValue(parent.rightChild);
+                parent.Value = FindMinValue(parent.rightChild);
 
                 // Delete the inorder successor  
                 parent.rightChild = Remove(parent.rightChild, parent.Value);
@@ -224,17 +224,30 @@
             return parent;
         }
 
-        private int MinValue(BinaryTreeNode node)
+        public int FindMinValue(BinaryTreeNode node)
         {
-            int minv = node.Value;
+            int minValue = node.Value;
 
-            while (node.leftChild != null)
+            while (node.leftChild is not null)
             {
-                minv = node.leftChild.Value;
+                minValue = node.leftChild.Value;
                 node = node.leftChild;
             }
 
-            return minv;
+            return minValue;
+        }
+
+        public int FindMaxValue(BinaryTreeNode node)
+        {
+            int maxValue = node.Value;
+
+            while (node.rightChild is not null)
+            {
+                maxValue = node.rightChild.Value;
+                node = node.rightChild;
+            }
+
+            return maxValue;
         }
 
         private int GetTreeDepth(BinaryTreeNode parent)

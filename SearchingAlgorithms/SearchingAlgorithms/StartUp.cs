@@ -1,7 +1,7 @@
 ﻿using SearchingAlgorithms;
 
-int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-int? desiredNumberIndex = SearchingAlgorithm.FibonacciSearch(array, 5);
+int[] array = { 1, 3, 6, 11, 15, 17, 21, 23, 27, 29, 32 };
+int? desiredNumberIndex = SearchingAlgorithm.BinarySearch(array, 23);
 
 string output = null;
 

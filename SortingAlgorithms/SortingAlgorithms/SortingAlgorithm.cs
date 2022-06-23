@@ -322,6 +322,20 @@ namespace SortingAlgorithms
             }
         }
 
+        public static void Sort(int[] arr)
+        {
+            int n = arr.Length;
+            for (int i = 0; i < n - 1; i++)
+            {
+                int k = i;
+                for (int j = i + 1; j < n; j++)
+                    if (arr[j] < arr[k])
+                        k = j;
+                int tmp = arr[i]; arr[i] = arr[k]; arr[k] = tmp;
+            }
+        }
+
+
         public static int[] GenerateArrayWithRandomIntegers(int lowerBound, int upperBound, int integersCount)
         {
             try

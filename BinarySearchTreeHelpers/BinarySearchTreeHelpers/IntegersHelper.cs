@@ -1,6 +1,6 @@
 ﻿namespace BinarySearchTreeHelpers
 {
-    public static class IntegerHelper
+    public static class IntegersHelper
     {
         public static int[] GenerateArrayWithRandomIntegers(int lowerBound, int upperBound, int integersCount, 
                                                             bool mustBeDifferent = false)

@@ -113,11 +113,15 @@
         /// </returns>
         public static int? BinarySearch(int[] sortedArray, int desiredElement)
         {
+            int stepsCounter = 0;
+
             int minNumberIndex = 0;
             int maxNumberIndex = sortedArray.Length - 1;
 
             while (minNumberIndex <= maxNumberIndex)
             {
+                Console.WriteLine(stepsCounter);
+
                 int middleNumberIndex = (minNumberIndex + maxNumberIndex) / 2;
 
                 bool isFound = desiredElement == sortedArray[middleNumberIndex];
@@ -125,10 +129,12 @@
                 else if (desiredElement < sortedArray[middleNumberIndex])
                 {
                     maxNumberIndex = middleNumberIndex - 1;
+                    stepsCounter++;
                 }
                 else
                 {
                     minNumberIndex = middleNumberIndex + 1;
+                    stepsCounter++;
                 }
             }
 
