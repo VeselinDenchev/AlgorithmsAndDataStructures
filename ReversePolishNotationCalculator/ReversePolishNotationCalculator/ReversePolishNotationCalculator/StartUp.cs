@@ -1,0 +1,3 @@
+﻿using ReversePolishNotationCalculator;
+
+ReversePolishNotationHelper.InterpreteReversePolishNotation();

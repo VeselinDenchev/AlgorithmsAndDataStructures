@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReversePolishNotationCalculator", "ReversePolishNotationCalculator\ReversePolishNotationCalculator.csproj", "{CDB1A0F9-EE94-4AAB-8375-C1BA892F28E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDB1A0F9-EE94-4AAB-8375-C1BA892F28E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDB1A0F9-EE94-4AAB-8375-C1BA892F28E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDB1A0F9-EE94-4AAB-8375-C1BA892F28E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDB1A0F9-EE94-4AAB-8375-C1BA892F28E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F14E3E36-79B6-40DB-878B-DC70336658D1}
+	EndGlobalSection
+EndGlobal
