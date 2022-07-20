@@ -1,5 +1,5 @@
 # AlgorithmsAndDataStructures
-Algorithms and Data Structures University Course\
+Algorithms and Data Structures University Course
 
 &nbsp;&nbsp;&nbsp;&nbsp;This repository contains code helpers for:
 - Binary Search Tree: 
